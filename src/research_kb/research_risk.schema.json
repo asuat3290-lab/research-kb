@@ -1,0 +1,819 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "research-kb-research-risk-schema",
+  "title": "research-risk sidecar schema",
+  "description": "Structural schema for research-risk.json study-design sidecars. Policy rules are enforced by research_risk.py, not by this schema alone.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "enabled",
+    "policy_level",
+    "design_version",
+    "design_status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.1"
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "policy_level": {
+      "enum": [
+        "none",
+        "interpretive",
+        "comparative",
+        "genealogical",
+        "causal"
+      ]
+    },
+    "design_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "design_status": {
+      "enum": [
+        "draft",
+        "locked"
+      ]
+    },
+    "locked_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "research_question": {
+      "type": "string"
+    },
+    "research_risk_policy": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "level": {
+          "enum": [
+            "none",
+            "interpretive",
+            "comparative",
+            "genealogical",
+            "causal"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "primary_hypothesis": {
+      "$ref": "#/$defs/hypothesis"
+    },
+    "rival_hypotheses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/hypothesis"
+      }
+    },
+    "falsification_conditions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/falsification_condition"
+      }
+    },
+    "operational_criteria": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/operational_criterion"
+      }
+    },
+    "diachronic_connection_evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/diachronic_evidence"
+      }
+    },
+    "mechanism_chain": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "object"
+        ]
+      }
+    },
+    "mechanism_failure_conditions": {
+      "type": "array",
+      "items": {
+        "type": [
+          "string",
+          "object"
+        ]
+      }
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/material"
+      }
+    },
+    "holdout_sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/holdout_source"
+      }
+    },
+    "negative_controls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/negative_control"
+      }
+    },
+    "outcome_branches": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/outcome_branch"
+      }
+    },
+    "contribution_type": {
+      "$ref": "#/$defs/contribution_type"
+    },
+    "bridge_assessments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/bridge_assessment"
+      }
+    },
+    "adversarial_review": {
+      "$ref": "#/$defs/adversarial_review"
+    },
+    "validation_status": {
+      "$ref": "#/$defs/validation_status"
+    },
+    "design_history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/design_history_entry"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "hypothesis": {
+      "type": "object",
+      "required": [
+        "id",
+        "statement"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "risk_bearing": {
+          "type": "boolean"
+        },
+        "failure_effect": {
+          "type": "string"
+        },
+        "hypothesis_kind": {
+          "enum": [
+            "shared_source",
+            "template_too_broad",
+            "retrospective_reconstruction",
+            "alternative_mechanism",
+            "other"
+          ]
+        },
+        "simplicity_note": {
+          "type": "string"
+        },
+        "predictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/prediction"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "prediction": {
+      "type": "object",
+      "required": [
+        "evidence_class",
+        "expected_observation"
+      ],
+      "properties": {
+        "evidence_class": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_observation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "counterfactual": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "falsification_condition": {
+      "type": "object",
+      "required": [
+        "id",
+        "statement"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "related_hypothesis_id": {
+          "type": "string"
+        },
+        "status_at_lock": {
+          "enum": [
+            "known_before_lock",
+            "genuinely_open"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "operational_criterion": {
+      "type": "object",
+      "required": [
+        "id",
+        "statement"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inclusion_test": {
+          "type": "string"
+        },
+        "exclusion_test": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "diachronic_evidence": {
+      "type": "object",
+      "required": [
+        "id",
+        "source_ref",
+        "observation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "connection_type": {
+          "enum": [
+            "self_citation",
+            "explicit_redefinition",
+            "intermediate_recurrence",
+            "source_transmission",
+            "problem_reactivation",
+            "chronology_only"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "material": {
+      "type": "object",
+      "required": [
+        "id",
+        "source_ref",
+        "evidence_role",
+        "seen_before_lock"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_role": {
+          "enum": [
+            "discovery",
+            "design_evidence",
+            "holdout",
+            "negative_control",
+            "validation",
+            "background"
+          ]
+        },
+        "seen_before_lock": {
+          "type": "boolean"
+        },
+        "design_impacted": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "holdout_source": {
+      "type": "object",
+      "required": [
+        "id",
+        "source_ref",
+        "seen_before_lock"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seen_before_lock": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "negative_control": {
+      "type": "object",
+      "required": [
+        "id",
+        "source_ref",
+        "reason_for_control",
+        "expected_result"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason_for_control": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_result": {
+          "type": "string",
+          "minLength": 1
+        },
+        "same_standard_as_primary": {
+          "type": "boolean"
+        },
+        "actual_result": {
+          "enum": [
+            "pending",
+            "passes",
+            "fails",
+            "indeterminate",
+            null
+          ]
+        },
+        "tests_hypotheses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "outcome_branch": {
+      "type": "object",
+      "required": [
+        "conclusion_effect"
+      ],
+      "properties": {
+        "conclusion_effect": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retracts_primary": {
+          "type": "boolean"
+        },
+        "changes_contribution": {
+          "type": "boolean"
+        },
+        "changes_center_conclusion": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "contribution_type": {
+      "type": "object",
+      "required": [
+        "primary",
+        "secondary"
+      ],
+      "properties": {
+        "primary": {
+          "enum": [
+            "textual_discovery",
+            "source_discovery",
+            "genealogical_explanation",
+            "causal_explanation",
+            "conceptual_reconstruction",
+            "dispute_adjudication",
+            "methodological_framework",
+            "negative_result"
+          ]
+        },
+        "secondary": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "textual_discovery",
+              "source_discovery",
+              "genealogical_explanation",
+              "causal_explanation",
+              "conceptual_reconstruction",
+              "dispute_adjudication",
+              "methodological_framework",
+              "negative_result"
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "bridge_assessment": {
+      "type": "object",
+      "required": [
+        "bridge_id"
+      ],
+      "properties": {
+        "bridge_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "overall_strength": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unresolved",
+            "unproven"
+          ]
+        },
+        "dimensions": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "adversarial_review": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "completed"
+          ]
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "completed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "validation_status": {
+      "type": "object",
+      "required": [
+        "required",
+        "completed"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "completed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "design_history_entry": {
+      "type": "object",
+      "required": [
+        "from_version",
+        "to_version"
+      ],
+      "properties": {
+        "from_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "to_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string"
+        },
+        "evidence_seen_before_change": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "changed_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "makes_primary_easier": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "old_design_result": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "hypothesis_status_enum": {
+      "enum": [
+        "supported",
+        "partially_supported",
+        "not_falsified",
+        "unresolved",
+        "weakened",
+        "falsified",
+        "unadjudicated"
+      ]
+    },
+    "hypothesis_status": {
+      "type": "object",
+      "required": [
+        "hypothesis_id",
+        "status"
+      ],
+      "properties": {
+        "hypothesis_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/hypothesis_status_enum"
+        }
+      },
+      "additionalProperties": true
+    },
+    "positive_discriminating_evidence": {
+      "type": "object",
+      "required": [
+        "id",
+        "evidence_class",
+        "observed_after_lock",
+        "outcome_unknown_at_lock",
+        "supports_primary_prediction",
+        "discriminates_against"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_class": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observed_after_lock": {
+          "type": "boolean"
+        },
+        "outcome_unknown_at_lock": {
+          "type": "boolean"
+        },
+        "supports_primary_prediction": {
+          "type": "boolean"
+        },
+        "discriminates_against": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "source_ref": {
+          "type": "string"
+        },
+        "observed_at": {
+          "type": "string"
+        },
+        "observation_scope": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "observation": {
+      "type": "object",
+      "required": [
+        "id",
+        "evidence_class",
+        "outcome",
+        "known_before_lock",
+        "observed_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_class": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outcome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "known_before_lock": {
+          "type": "boolean"
+        },
+        "observed_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string"
+        },
+        "observation_scope": {
+          "type": "string"
+        },
+        "matches_prediction": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "verdict": {
+      "type": "object",
+      "required": [
+        "hypothesis_id",
+        "status",
+        "reasoning"
+      ],
+      "properties": {
+        "hypothesis_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/hypothesis_status_enum"
+        },
+        "reasoning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requires_revision": {
+          "type": "boolean"
+        },
+        "contribution_effect": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "research_results": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "design_version",
+        "design_sha256",
+        "hypothesis_statuses",
+        "positive_discriminating_evidence",
+        "observations"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.1"
+        },
+        "design_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "design_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "hypothesis_statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hypothesis_status"
+          }
+        },
+        "positive_discriminating_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/positive_discriminating_evidence"
+          }
+        },
+        "observations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/observation"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "research_adjudication": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "design_version",
+        "design_sha256",
+        "adjudication_version",
+        "verdicts"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.1"
+        },
+        "design_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "design_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "adjudication_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "verdicts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/verdict"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

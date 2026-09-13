@@ -1,0 +1,552 @@
+{
+  "policy_id": "default-writing-policy",
+  "policy_version": "1.2.0",
+  "schema_version": "1",
+  "description": "research-kb 三层交付写作政策：A 正式论文、B 学术方法附录、C 系统与技术报告。",
+  "default_profile": "academic_paper",
+  "inheritance": [
+    "system_default",
+    "artifact_profile",
+    "project_config",
+    "report_manifest_config"
+  ],
+  "locked": {
+    "fields": [
+      "policy_id",
+      "policy_version",
+      "deliverable_layer"
+    ],
+    "rules": [
+      "academic_paper_forbidden_system_state",
+      "academic_paper_no_approval_status",
+      "academic_paper_no_expansion_report"
+    ]
+  },
+  "overridable_fields": [
+    "budget",
+    "extra_forbidden_terms",
+    "allowed_sections",
+    "compression_review_options"
+  ],
+  "array_merge": {
+    "extra_forbidden_terms": "append",
+    "allowed_sections": "append",
+    "compression_review_options": "replace"
+  },
+  "line_endings": {
+    "default": "lf",
+    "mixed_severity": "error",
+    "mismatch_severity": "warning"
+  },
+  "profiles": {
+    "academic_paper": {
+      "deliverable_layer": "A",
+      "label": "正式学术论文",
+      "allowed_sections": [
+        "摘要",
+        "导论",
+        "研究史",
+        "第一章",
+        "第二章",
+        "第三章",
+        "第四章",
+        "第五章",
+        "第六章",
+        "比较性结语",
+        "结论",
+        "脚注",
+        "参考文献"
+      ],
+      "required_sections": [
+        {
+          "id": "abstract",
+          "pattern": "^(摘要|Abstract)$",
+          "bucket": "errors",
+          "message": "正式论文缺少摘要",
+          "min_non_whitespace_chars": 1,
+          "under_min_severity": "error"
+        },
+        {
+          "id": "introduction",
+          "pattern": "^(导论|引言|Introduction)$",
+          "bucket": "review_items",
+          "message": "正式论文缺少导论"
+        },
+        {
+          "id": "conclusion",
+          "pattern": "^结论$",
+          "bucket": "review_items",
+          "message": "正式论文缺少结论"
+        },
+        {
+          "id": "references",
+          "pattern": "^(参考文献|References)$",
+          "bucket": "errors",
+          "message": "正式论文缺少参考文献",
+          "min_items": 1
+        }
+      ],
+      "budget": {
+        "min_chars": 40000,
+        "max_chars": 55000
+      },
+      "managed_annotation_required": true,
+      "blocker_bucket": true,
+      "footnotes": {
+        "enabled": true,
+        "missing_severity": "error",
+        "duplicate_severity": "error",
+        "orphan_severity": "warning"
+      },
+      "bibliography": {
+        "enabled": true,
+        "min_items": 1,
+        "empty_severity": "error"
+      },
+      "citation_surface": {
+        "enabled": false,
+        "researchers": []
+      },
+      "public_export": {
+        "allowed_transforms": [
+          "writing_annotations",
+          "blank_line_normalization"
+        ],
+        "require_parity": true
+      },
+      "system_leakage_scope": "all_visible_text",
+      "scan_footnotes": true,
+      "scan_bibliography": true,
+      "bibliography_completeness": {
+        "enabled": true,
+        "severity": "review",
+        "required_fields_by_type": {
+          "book": [
+            "author",
+            "title",
+            "publisher",
+            "year"
+          ],
+          "article": [
+            "author",
+            "title",
+            "journal",
+            "year"
+          ],
+          "chapter": [
+            "author",
+            "title",
+            "container_title",
+            "year"
+          ]
+        }
+      }
+    },
+    "method_appendix": {
+      "deliverable_layer": "B",
+      "label": "学术方法附录",
+      "allowed_sections": [
+        "定义句与功能句",
+        "证据等级",
+        "桥梁强度",
+        "五项检验",
+        "证据投射表",
+        "命题变更",
+        "未决问题",
+        "研究史核验记录"
+      ],
+      "required_sections": [
+        {
+          "id": "evidence_levels",
+          "pattern": "^(证据等级|证据等级体系)$",
+          "bucket": "review_items",
+          "message": "方法附录缺少证据等级说明"
+        }
+      ],
+      "budget": {
+        "min_chars": 0,
+        "max_chars": 60000
+      },
+      "managed_annotation_required": false,
+      "blocker_bucket": false
+    },
+    "technical_report": {
+      "deliverable_layer": "C",
+      "label": "系统与技术交付报告",
+      "allowed_sections": [],
+      "required_sections": [],
+      "budget": {
+        "min_chars": 0,
+        "max_chars": 0
+      },
+      "managed_annotation_required": false,
+      "blocker_bucket": false
+    },
+    "research_memo": {
+      "deliverable_layer": null,
+      "label": "研究备忘录",
+      "allowed_sections": [],
+      "required_sections": [],
+      "budget": {
+        "min_chars": 0,
+        "max_chars": 0
+      },
+      "managed_annotation_required": false,
+      "blocker_bucket": false
+    }
+  },
+  "rules": [
+    {
+      "id": "academic_paper_forbidden_system_state",
+      "enforcement": "agent_local",
+      "kind": "forbidden_term",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "error",
+      "blocker_profiles": [
+        "academic_paper"
+      ],
+      "message": "正式论文禁止出现系统状态、流程审计或版本迁移信息",
+      "terms": [
+        "v6.3",
+        "本轮",
+        "用户要求",
+        "字符目标",
+        "exact-quote",
+        "Claim",
+        "Link",
+        "Event",
+        "maps_to",
+        "锚点",
+        "REVIEW",
+        "APPROVED",
+        "PENDING_PAGE",
+        "审批阻断",
+        "审计脚本",
+        "系统状态",
+        "research-core",
+        "Admin CLI",
+        "verified_evidence_id",
+        "OCR-normalized"
+      ],
+      "ignore": [
+        "code_blocks",
+        "html_comments",
+        "front_matter",
+        "inline_code"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "SYSTEM_METADATA_LEAKAGE",
+      "enforcement": "agent_local",
+      "kind": "regex",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "error",
+      "blocker_profiles": [
+        "academic_paper"
+      ],
+      "message": "正式论文所有可见文本（含脚注与参考文献）禁止出现内部核验ID与来源元数据",
+      "pattern": "\\bve_[A-Za-z0-9_]{6,}\\b",
+      "ignore": [
+        "code_blocks",
+        "html_comments",
+        "front_matter",
+        "inline_code"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "academic_paper_no_approval_status",
+      "enforcement": "agent_local",
+      "kind": "regex",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "error",
+      "blocker_profiles": [
+        "academic_paper"
+      ],
+      "message": "正式论文不得汇报审批、等待人工批准或流程状态",
+      "pattern": "(等待人工(审批|批准)|审批阻断|当前处于.{0,12}状态|本轮(核验|验证|审计).{0,20}条)",
+      "ignore": [
+        "code_blocks",
+        "html_comments",
+        "front_matter"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "academic_paper_no_expansion_report",
+      "enforcement": "agent_local",
+      "kind": "regex",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "error",
+      "blocker_profiles": [
+        "academic_paper"
+      ],
+      "message": "正式论文不得汇报扩写、压缩或字数过程",
+      "pattern": "(本次扩写|增加.{0,10}字符|压缩至.{0,10}字符|扩写日志|压缩日志)",
+      "ignore": [
+        "code_blocks",
+        "html_comments",
+        "front_matter"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "method_appendix_no_status_leak",
+      "enforcement": "agent_local",
+      "kind": "forbidden_term",
+      "profiles": [
+        "method_appendix"
+      ],
+      "severity": "error",
+      "blocker_profiles": [],
+      "message": "方法附录不应包含审批状态或系统执行状态",
+      "terms": [
+        "REVIEW",
+        "APPROVED",
+        "PENDING_PAGE",
+        "审批阻断",
+        "Admin CLI",
+        "exact-quote 执行状态"
+      ],
+      "ignore": [
+        "code_blocks",
+        "html_comments",
+        "front_matter",
+        "footnotes"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "budget_soft_limit",
+      "enforcement": "agent_local",
+      "kind": "budget",
+      "profiles": [
+        "academic_paper",
+        "method_appendix"
+      ],
+      "severity": "warning",
+      "blocker_profiles": [],
+      "message": "正文篇幅超出当前成果类型的软预算",
+      "ignore": [
+        "references",
+        "front_matter",
+        "html_comments"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "patch_section_numbering",
+      "enforcement": "agent_local",
+      "kind": "section_numbering",
+      "profiles": [
+        "academic_paper",
+        "method_appendix"
+      ],
+      "severity": "warning",
+      "blocker_profiles": [],
+      "message": "章节出现补丁式编号或同一章节内编号倒序",
+      "ignore": [
+        "code_blocks",
+        "front_matter"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "argument_gain_coverage",
+      "enforcement": "agent_local",
+      "kind": "argument_gain",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "warning",
+      "blocker_profiles": [],
+      "message": "受管草稿的论证单元缺少 argument_gain 后台标注",
+      "ignore": [
+        "front_matter"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "required_sections",
+      "enforcement": "agent_local",
+      "kind": "required_section",
+      "profiles": [
+        "academic_paper",
+        "method_appendix"
+      ],
+      "severity": "warning",
+      "blocker_profiles": [],
+      "message": "成果缺少该类型要求的部分",
+      "ignore": [],
+      "allowlist": []
+    },
+    {
+      "id": "compression_review_duplicates",
+      "enforcement": "agent_local",
+      "kind": "compression_duplicate",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "review",
+      "blocker_profiles": [],
+      "message": "压缩审查发现同一表述重复出现",
+      "ignore": [
+        "code_blocks",
+        "references",
+        "footnotes"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "compression_review_limits",
+      "enforcement": "agent_local",
+      "kind": "compression_limit_echo",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "review",
+      "blocker_profiles": [],
+      "message": "同一证据限制被反复完整展开",
+      "ignore": [
+        "code_blocks",
+        "references",
+        "footnotes"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "required_section_content",
+      "enforcement": "agent_local",
+      "kind": "required_section_content",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "error",
+      "blocker_profiles": [
+        "academic_paper"
+      ],
+      "message": "必备部分为空或内容不足",
+      "ignore": [
+        "html_comments",
+        "front_matter"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "footnote_integrity",
+      "enforcement": "agent_local",
+      "kind": "footnote_integrity",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "error",
+      "blocker_profiles": [
+        "academic_paper"
+      ],
+      "message": "脚注引用与定义不完整",
+      "ignore": [
+        "code_blocks",
+        "inline_code",
+        "html_comments",
+        "front_matter"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "bibliography_nonempty",
+      "enforcement": "agent_local",
+      "kind": "bibliography",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "error",
+      "blocker_profiles": [
+        "academic_paper"
+      ],
+      "message": "参考文献为空或条目不足",
+      "ignore": [],
+      "allowlist": []
+    },
+    {
+      "id": "citation_surface_integrity",
+      "enforcement": "agent_local",
+      "kind": "citation_surface",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "review",
+      "blocker_profiles": [],
+      "message": "正文研究者表述未在参考文献中找到匹配",
+      "ignore": [
+        "code_blocks",
+        "inline_code",
+        "html_comments",
+        "front_matter",
+        "references",
+        "footnotes"
+      ],
+      "allowlist": []
+    },
+    {
+      "id": "bibliography_completeness",
+      "enforcement": "agent_local",
+      "kind": "bibliography_completeness",
+      "profiles": [
+        "academic_paper"
+      ],
+      "severity": "review",
+      "blocker_profiles": [],
+      "message": "参考文献条目缺少该类型必需的出版信息",
+      "ignore": [
+        "code_blocks",
+        "html_comments",
+        "front_matter"
+      ],
+      "allowlist": []
+    }
+  ],
+  "compression_review": {
+    "statuses": [
+      "not_required",
+      "pending",
+      "passed",
+      "returned"
+    ],
+    "checks": [
+      "same_proposition_three_places",
+      "same_quotes_reinterpreted",
+      "same_limit_expanded",
+      "method_content_in_paper",
+      "patch_numbering",
+      "research_history_repeated",
+      "conclusion_project_status",
+      "argument_gain_missing"
+    ],
+    "max_duplicate_repeat": 3,
+    "limit_echo_terms": [
+      "不能证明谱系",
+      "只能视为功能比较",
+      "未被证明",
+      "桥梁强度"
+    ]
+  },
+  "argument_gain": {
+    "allowed": [
+      "new_evidence",
+      "new_inference",
+      "concept_distinction",
+      "rival_interpretation",
+      "revision",
+      "unresolved_mechanism"
+    ]
+  }
+}

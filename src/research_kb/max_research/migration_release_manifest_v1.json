@@ -1,0 +1,167 @@
+{
+  "schema": "max-migration-release-manifest/v1",
+  "manifest_version": 1,
+  "control_schema_version": 32,
+  "migrations": [
+    {
+      "version": 1,
+      "name": "001_control_plane.sql",
+      "sha256": "94334f09fbd29ee0f541a5309187658a97817a85bf8cd33e96b1697605290c33"
+    },
+    {
+      "version": 2,
+      "name": "002_run_scoped_history.sql",
+      "sha256": "e00d6cdfb8a29efd22485b03b7f78180c23fc2e2d33f59a29940866fe246c326"
+    },
+    {
+      "version": 3,
+      "name": "003_bounded_runner.sql",
+      "sha256": "881e9a38c880088d02954ff4cec015814f6e820fc427f204193f705b9442ebe3"
+    },
+    {
+      "version": 4,
+      "name": "004_mr2a1_runner_closure.sql",
+      "sha256": "2748ff02ab4556d8ecc9e2e620e55250656006b403266192d105d755beeabaaa"
+    },
+    {
+      "version": 5,
+      "name": "005_mr2a2_deliberation_usage.sql",
+      "sha256": "61253ed94eda7aa1241ff986a14cd48b5899ed7cc3be85fc43e6a401dfbab1dc"
+    },
+    {
+      "version": 6,
+      "name": "006_mr2b0_provider_scheduler.sql",
+      "sha256": "738e5b5259bf6b3777903e5b4e8b0aca63292f3d75c615aa720727db9f95bf60"
+    },
+    {
+      "version": 7,
+      "name": "007_mr2b0r_authority_budget_closure.sql",
+      "sha256": "9298a3e9d17cf007bc9eae436878d97fb331f48a20a92b00b7728f836121eb64"
+    },
+    {
+      "version": 8,
+      "name": "008_mr2b0r2_physical_dispatch_budget.sql",
+      "sha256": "c30eb7178a0a1e7f358a49dcdadab4dd0ec971e8471803dfbf3154850d591c26"
+    },
+    {
+      "version": 9,
+      "name": "009_mr2b1_live_network_authorization.sql",
+      "sha256": "dc84a3b537db5301a276e4897d3167c790b6a6ef6453ca80628fc0bf09980376"
+    },
+    {
+      "version": 10,
+      "name": "010_mr2b1a_live_dispatch_permit.sql",
+      "sha256": "3abe9e60f622dc84403360659467ff8ec409827cb4d207fa8dc44cbff5d6638e"
+    },
+    {
+      "version": 11,
+      "name": "011_mr2b2_live_authorization_bundle.sql",
+      "sha256": "57ef571ec57882e0f0c4b62d9e316951757cbaa0ee8343ded85afb33667e409a"
+    },
+    {
+      "version": 12,
+      "name": "012_mr3_orchestration_acquisition.sql",
+      "sha256": "831939045f63b6f901d22b2d237a13cf91d7c375f88238240039b886805ebcd0"
+    },
+    {
+      "version": 13,
+      "name": "013_mr4a_long_run_authorization.sql",
+      "sha256": "15f0b594cccce597db14ba695dd636592e43c40414b9b0d54e64f01920919be5"
+    },
+    {
+      "version": 14,
+      "name": "014_mr4a_source_egress.sql",
+      "sha256": "5a81b72566e9ccc00f8152b8770217cc26d987c1b1528e931e30d01b2ef84986"
+    },
+    {
+      "version": 15,
+      "name": "015_mr4a1_authority_bindings.sql",
+      "sha256": "13cc1f6969c71ce3c99832622d0841575a478c407c867cc656a33ce233e10aa1"
+    },
+    {
+      "version": 16,
+      "name": "016_mr4b0_live_canary_authority.sql",
+      "sha256": "7ed1062785730da8ea7cadaaf9bb6585d0737d361b9b05133d567cff20f561cc"
+    },
+    {
+      "version": 17,
+      "name": "017_mr4b1_authority_bindings.sql",
+      "sha256": "e96bab760a4f233866b21005a3c8b5b072aaf3eb5c5c33387e02d15623152552"
+    },
+    {
+      "version": 18,
+      "name": "018_mr4b1a_request_source_closure.sql",
+      "sha256": "57a393ed2ab7d2557019c098fef417309170e6cec15df9234f03727e46e0444e"
+    },
+    {
+      "version": 19,
+      "name": "019_mr4b1br_pre_send_resource_closure.sql",
+      "sha256": "67b6a9153b7c903d7c7129db4dc113acd4e15b456ee12f040aed6ea3729f4c57"
+    },
+    {
+      "version": 20,
+      "name": "020_live_canary_authority_lifetime_separation.sql",
+      "sha256": "ef005ba597f191171f5cb5759149e4dce5a01031bd54552ce5763ced04bb0b6d"
+    },
+    {
+      "version": 21,
+      "name": "021_mr4b1b_v12r1_native_preparation_jit_bridge.sql",
+      "sha256": "2a7bf46ddb9eeeea80b4fbd568b700edf9f366ef08081500f356dd95b4afd386"
+    },
+    {
+      "version": 22,
+      "name": "022_mr4b1b_v13r1_preparation_handoff.sql",
+      "sha256": "c138482efaaaee80cca72e10cb318c75cc463a4fd771a57f39786ae412db1e68"
+    },
+    {
+      "version": 23,
+      "name": "023_mr4b1b_v14r3_dns_attempt_receipt_closure.sql",
+      "sha256": "d31961ebe892db3b046ef8d3d1059b996bd94b953a71a5e6d9c573dfc74f7140"
+    },
+    {
+      "version": 24,
+      "name": "024_mr4b1b_v15r2_server_owned_live_approval_preview.sql",
+      "sha256": "4582aa2b483e5cf9d30e7d349fd472d32ca1b097d1313601142e1822eeef1bff"
+    },
+    {
+      "version": 25,
+      "name": "025_mr4b1b_v16r3_native_live_execution_bridge.sql",
+      "sha256": "71735240b421364ccc51a0d8c4272260549b910aae1901a7e7ac431d99d586f7"
+    },
+    {
+      "version": 26,
+      "name": "026_mr4b1c_execution_window_renewal.sql",
+      "sha256": "a4cc52032b079e42a38641442656fb885410e256fee3f7b574478e2dbcd3bd9a"
+    },
+    {
+      "version": 27,
+      "name": "027_mr4b1c_live_network_policy_binding.sql",
+      "sha256": "41bcd9669199276669ba4a1c363a3e45740342d767938065ea64b579087e5856"
+    },
+    {
+      "version": 28,
+      "name": "028_mr_convergence_dev18_capsule.sql",
+      "sha256": "a0ccffee0628ee2fd56548ddf06bef47864a4e12d6202e047941358d8528b9e0"
+    },
+    {
+      "version": 29,
+      "name": "029_mr_portability_foundation.sql",
+      "sha256": "02069da8facf66ef99c09692a60882af84d99c4eab7ad6096b3d2de2674fd851"
+    },
+    {
+      "version": 30,
+      "name": "030_mr_portability_correction.sql",
+      "sha256": "c405c4cda2561530c96da446b13e23f41e693b3bc2a28c4e3854eecaf2e08478"
+    },
+    {
+      "version": 31,
+      "name": "031_mr_portability_convergence.sql",
+      "sha256": "dce352f350c1b1566dc104a3ba4ddec103f19fb772b16442a9278e878d50b75a"
+    },
+    {
+      "version": 32,
+      "name": "032_external_agent_work_protocol.sql",
+      "sha256": "faf770f1e453d873baf714416e2cb8a6e9bc651970204ef2a6188500f16c0447"
+    }
+  ]
+}

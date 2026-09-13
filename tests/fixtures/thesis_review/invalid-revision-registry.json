@@ -1,0 +1,19 @@
+{
+  "schema_version": "1",
+  "kind": "revision_registry",
+  "paper_id": "fixture-paper",
+  "paper_version": "v1.0",
+  "items": [
+    {
+      "id": "R001",
+      "severity": "major",
+      "location": "ch2",
+      "problem_type": "not_a_type",
+      "problem_description": "",
+      "evidence": "",
+      "recommended_change": "",
+      "allowed_scope": "",
+      "human_status": "unknown"
+    }
+  ]
+}

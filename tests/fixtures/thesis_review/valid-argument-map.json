@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "kind": "argument_map",
+  "paper_id": "fixture-paper",
+  "paper_version": "v1.0",
+  "nodes": [
+    {"id": "THESIS", "kind": "thesis", "text": "central claim", "location": "abstract"},
+    {"id": "C1", "kind": "chapter_claim", "text": "chapter one claim", "location": "ch1", "depends_on": ["THESIS"], "evidence_refs": ["E1"]},
+    {"id": "D1", "kind": "key_definition", "text": "definition", "location": "ch1", "depends_on": ["THESIS"]}
+  ]
+}

@@ -1,0 +1,195 @@
+# research-kb System Manifest example
+#
+# This file describes the runtime control plane.  It is not a research
+# database and must not contain source text, quotes, tokens, passwords, or
+# personal absolute paths.  Relative paths resolve from the runtime config
+# directory.  A deployment may replace a path with ${ENVIRONMENT_VARIABLE}.
+
+manifest_format_version = 1
+
+[engine]
+package = "research-kb"
+version = "0.1.0"
+
+[schema]
+version = 5
+
+[protocol]
+name = "research-kb/v1"
+
+[config]
+path = "config.toml"
+
+[components.database]
+path = "data/research.db"
+boundary = "runtime_root"
+required = true
+
+[components.corpus]
+paths = ["corpus"]
+boundary = "runtime_root"
+required = true
+
+[components.workspace]
+path = "workspace"
+boundary = "runtime_root"
+required = true
+
+[components.catalog]
+path = "${RESEARCH_KB_CATALOG}"
+boundary = "external"
+required = false
+
+[components.backup]
+path = "workspace/backups"
+boundary = "runtime_root"
+required = false
+
+[components.skills]
+path = "workspace/.agents/skills"
+boundary = "runtime_root"
+required = false
+
+[mcp]
+server_name = "research-kb"
+tools = [
+  "search_corpus",
+  "get_passage",
+  "get_document_metadata",
+  "get_research_context",
+  "submit_hypothesis",
+  "submit_objection",
+  "save_research_note",
+  "verify_quote_or_claim",
+  "submit_verified_evidence",
+  "get_search_history",
+  "submit_research_report",
+  "request_user_approval",
+]
+
+# The registry is optional.  Add one table per registered project when the
+# deployment wants doctor to reconcile database projects and workspace maps.
+[project_registry]
+projects = []
+
+[skills]
+items = []
+
+# Canonical Skill authority. Replace the zero digests after a human-reviewed
+# deployment. The canonical and adapter paths use a repository-root
+# placeholder so this example contains no personal absolute path.
+[skill_authority]
+authority = "canonical"
+
+[skill_authority.canonical]
+path = "${RESEARCH_KB_REPOSITORY_ROOT}/skills/source-based-research/SKILL.md"
+boundary = "external"
+content_sha256 = "0000000000000000000000000000000000000000000000000000000000000000"
+
+[skill_authority.runtime]
+path = "workspace/.agents/skills/source-based-research/SKILL.md"
+boundary = "runtime_root"
+content_sha256 = "0000000000000000000000000000000000000000000000000000000000000000"
+
+[[skill_authority.adapters]]
+name = "codex"
+path = "${RESEARCH_KB_REPOSITORY_ROOT}/adapters/codex/source-based-research.md"
+boundary = "external"
+required = false
+depends_on = "canonical"
+content_sha256 = "3eaa822d1ab8e07333867205b3bf6fb8460bf4e37924256d527494720683f264"
+
+[[skill_authority.adapters]]
+name = "luna"
+path = "${RESEARCH_KB_REPOSITORY_ROOT}/adapters/luna/source-based-research.md"
+boundary = "external"
+required = false
+depends_on = "canonical"
+content_sha256 = "3a55ddbefa3f7f115372e449ae680a8259697bd57585f7b862f747b535f59aa9"
+
+[[skill_authority.adapters]]
+name = "qoder"
+path = "${RESEARCH_KB_REPOSITORY_ROOT}/adapters/qoder/source-based-research.md"
+boundary = "external"
+required = false
+depends_on = "canonical"
+content_sha256 = "dea67fddea51f650590eb041d73b4023f6687c1c18d4d5fa16dfbf0feba33c07"
+
+[[skill_authority.adapters]]
+name = "opencode"
+path = "${RESEARCH_KB_REPOSITORY_ROOT}/adapters/opencode/source-based-research.md"
+boundary = "external"
+required = false
+depends_on = "canonical"
+content_sha256 = "e61c88ba33f5311d5f1bd1dce9242097b580b358a21428e0a57d616f622b555c"
+
+# Optional installed-adapter authority. Replace zero hashes only after a
+# human-reviewed installation; do not scan a global Skill directory.
+[[skill_authority.installations]]
+name = "codex-global"
+platform = "codex"
+template = "codex"
+required = true
+rendered_skill_path = "workspace/.agent-adapters/codex/research-kb-pilot/SKILL.md"
+rendered_skill_boundary = "runtime_root"
+installed_skill_path = "${USERPROFILE}/.codex/skills/research-kb-pilot/SKILL.md"
+installed_skill_boundary = "external"
+rendered_metadata_path = "workspace/.agent-adapters/codex/research-kb-pilot/agents/openai.yaml"
+rendered_metadata_boundary = "runtime_root"
+installed_metadata_path = "${USERPROFILE}/.codex/skills/research-kb-pilot/agents/openai.yaml"
+installed_metadata_boundary = "external"
+skill_sha256 = "0000000000000000000000000000000000000000000000000000000000000000"
+metadata_sha256 = "0000000000000000000000000000000000000000000000000000000000000000"
+
+# Optional Codex local MCP authority. This governs only the named server
+# subtable, not the complete Codex config or unrelated MCP servers.
+[mcp_authority]
+authority = "manifest"
+
+[[mcp_authority.installations]]
+name = "codex-research-kb-pilot"
+platform = "codex"
+config_path = "${USERPROFILE}/.codex/config.toml"
+config_boundary = "external"
+server_name = "research-kb-pilot"
+transport = "stdio"
+command = "${PYTHON_EXECUTABLE}"
+args = ["-m", "research_kb.mcp_server", "--config", "${RESEARCH_KB_CONFIG}"]
+cwd = "${RESEARCH_KB_RUNTIME_ROOT}/workspace"
+enabled = true
+required = false
+startup_timeout_sec = 30
+tool_timeout_sec = 60
+enabled_tools = [
+  "search_corpus",
+  "get_passage",
+  "get_document_metadata",
+  "get_research_context",
+  "submit_hypothesis",
+  "submit_objection",
+  "save_research_note",
+  "verify_quote_or_claim",
+  "submit_verified_evidence",
+  "get_search_history",
+  "submit_research_report",
+  "request_user_approval",
+]
+
+[catalog]
+lifecycle = [
+  "cataloged",
+  "reviewed",
+  "ready",
+  "ingested",
+  "indexed",
+  "available",
+  "retired",
+]
+summary_files = ["summary.json"]
+
+[capabilities]
+lexical = true
+semantic = false
+hybrid = false
+local_model = false
+remote_deployment = false

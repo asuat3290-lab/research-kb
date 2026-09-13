@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "kind": "argument_map",
+  "paper_id": "PAPER_ID",
+  "paper_version": "vN.M",
+  "nodes": [
+    {"id": "THESIS", "kind": "thesis", "text": "中心论点", "location": "摘要/引言"},
+    {"id": "C1", "kind": "chapter_claim", "text": "第一章中心命题", "location": "第一章", "depends_on": ["THESIS"], "evidence_refs": []}
+  ]
+}

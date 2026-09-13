@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "kind": "argument_map",
+  "paper_id": "fixture-paper",
+  "paper_version": "v1.0",
+  "nodes": [
+    {"id": "THESIS", "kind": "thesis", "text": "central claim"},
+    {"id": "C1", "kind": "not_a_kind", "text": "chapter one claim", "depends_on": ["MISSING"]}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "research-kb-source-manifest/v1",
+  "manifest_version": 1,
+  "package": "research-kb",
+  "package_version": "0.1.1.dev23",
+  "core_schema_version": 5,
+  "control_schema_version": 32,
+  "protocol": "research-kb/v1",
+  "migration_count": 32,
+  "source_tree_hash_algorithm": "sha256(path\\nfile_sha256\\n); excludes source_manifest_v1.json, release_metadata_v1.json and caches",
+  "source_tree_sha256": "f544c366a6e963e592db5e939080d9774896c3711bb3638bfd991e6e12baff9c",
+  "source_file_count": 111
+}

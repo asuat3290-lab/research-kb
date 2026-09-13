@@ -1,0 +1,15 @@
+{
+  "schema": "research-kb-release-metadata/v1",
+  "manifest_version": 1,
+  "package": "research-kb",
+  "package_version": "0.1.1.dev23",
+  "core_schema_version": 5,
+  "control_schema_version": 32,
+  "max_control_schema_version": 32,
+  "protocol": "research-kb/v1",
+  "migration_count": 32,
+  "source_manifest": "source_manifest_v1.json",
+  "source_manifest_sha256": "04c1c35ea816a6d2222599696b5dd3a29a3692e2b903e6d487f83cd908eb065f",
+  "migration_release_manifest": "migration_release_manifest_v1.json",
+  "schema_manifest": "schema_manifest_v32.json"
+}

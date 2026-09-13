@@ -1,0 +1,218 @@
+{
+  "schema_version": "1.1",
+  "enabled": true,
+  "policy_level": "genealogical",
+  "design_version": 1,
+  "design_status": "draft",
+  "research_question": "Is the structural similarity between the author's early and later concepts evidence of internal intellectual continuity?",
+  "primary_hypothesis": {
+    "id": "H1",
+    "statement": "The observed structural overlap reflects internal continuity in the author's problem development.",
+    "risk_bearing": true,
+    "failure_effect": "The continuity claim in the center conclusion must be retracted.",
+    "predictions": [
+      {
+        "evidence_class": "source_texts",
+        "expected_observation": "The later text explicitly reuses the earlier problem vocabulary with the same function."
+      }
+    ]
+  },
+  "rival_hypotheses": [
+    {
+      "id": "H2",
+      "statement": "Both texts draw independently on a shared conceptual resource available in the period.",
+      "hypothesis_kind": "shared_source",
+      "simplicity_note": "Fewer assumptions when no direct authorial linkage is documented.",
+      "predictions": [
+        {
+          "evidence_class": "source_texts",
+          "expected_observation": "The same vocabulary appears in unrelated contemporaneous authors."
+        },
+        {
+          "evidence_class": "citation_trails",
+          "expected_observation": "Neither text cites the other's distinctive source."
+        }
+      ]
+    },
+    {
+      "id": "H3",
+      "statement": "The similarity is an artifact of an overly broad analytical template.",
+      "hypothesis_kind": "template_too_broad",
+      "simplicity_note": "Requires no biographical assumption but must show the template generates false positives.",
+      "predictions": [
+        {
+          "evidence_class": "source_texts",
+          "expected_observation": "Applying the same template to random unrelated pairs produces equal similarity scores."
+        },
+        {
+          "evidence_class": "negative_controls",
+          "expected_observation": "At least one unrelated pair passes the primary criteria."
+        }
+      ]
+    }
+  ],
+  "falsification_conditions": [
+    {
+      "id": "F1",
+      "statement": "If no source from the author's early phase contains the later problem vocabulary, H1 fails.",
+      "related_hypothesis_id": "H1"
+    },
+    {
+      "id": "F2",
+      "statement": "If the vocabulary is fully explained by the shared source, H1 is not preferred.",
+      "related_hypothesis_id": "H2"
+    }
+  ],
+  "operational_criteria": [
+    {
+      "id": "C1",
+      "statement": "Object typology: the two texts address the same type of object.",
+      "inclusion_test": "Both texts describe a structured whole that is external to the individual.",
+      "exclusion_test": "Parallel terms about different objects do not count."
+    },
+    {
+      "id": "C2",
+      "statement": "Mediation typology: the same mediating structure is at work.",
+      "inclusion_test": "Both texts use the same mediating category in the same functional slot.",
+      "exclusion_test": "A mediating term present in only one text is insufficient."
+    },
+    {
+      "id": "C3",
+      "statement": "Problem polarity: the same problem polarity appears.",
+      "inclusion_test": "Both texts frame the same tension between the individual and the objective world.",
+      "exclusion_test": "Similar polarity in one text only is not counted."
+    },
+    {
+      "id": "C4",
+      "statement": "Pathological structure: the same failure structure is diagnosed.",
+      "inclusion_test": "Both texts identify the same kind of pathological closure.",
+      "exclusion_test": "Different failure mechanisms are not counted."
+    },
+    {
+      "id": "C5",
+      "statement": "Resolution direction: the same direction of resolution is proposed.",
+      "inclusion_test": "Both texts resolve the tension in the same direction.",
+      "exclusion_test": "Opposite resolution directions count against correspondence."
+    },
+    {
+      "id": "C6",
+      "statement": "Diachronic connection: a temporal link is documented.",
+      "inclusion_test": "A dated source connects the early and late phases.",
+      "exclusion_test": "Untested chronological adjacency is not evidence."
+    }
+  ],
+  "diachronic_connection_evidence": [
+    {
+      "id": "D1",
+      "source_ref": "early-works-1916",
+      "observation": "The early text contains the same problem vocabulary used in the later text.",
+      "connection_type": "source_transmission"
+    },
+    {
+      "id": "D2",
+      "source_ref": "late-works-1923",
+      "observation": "The later text reuses the vocabulary without marking it as new.",
+      "connection_type": "source_transmission"
+    }
+  ],
+  "mechanism_chain": [],
+  "mechanism_failure_conditions": [],
+  "materials": [
+    {
+      "id": "M1",
+      "source_ref": "early-works-1916",
+      "evidence_role": "validation",
+      "seen_before_lock": true,
+      "design_impacted": true
+    },
+    {
+      "id": "M2",
+      "source_ref": "late-works-1923",
+      "evidence_role": "validation",
+      "seen_before_lock": true,
+      "design_impacted": false
+    }
+  ],
+  "holdout_sources": [],
+  "negative_controls": [
+    {
+      "id": "NC1",
+      "source_ref": "author-internal-control-1910",
+      "reason_for_control": "A contemporaneous text by the same author should not show the target structure.",
+      "expected_result": "The control text fails the primary criteria.",
+      "same_standard_as_primary": true,
+      "actual_result": "fails",
+      "tests_hypotheses": [
+        "H3"
+      ]
+    },
+    {
+      "id": "NC2",
+      "source_ref": "external-contemporaneous-1920",
+      "reason_for_control": "A contemporaneous author using the shared vocabulary should not reproduce the full structure.",
+      "expected_result": "The control text fails the primary criteria.",
+      "same_standard_as_primary": true,
+      "actual_result": "fails",
+      "tests_hypotheses": [
+        "H3"
+      ]
+    }
+  ],
+  "outcome_branches": {
+    "primary_supported": {
+      "conclusion_effect": "The continuity claim is kept.",
+      "retracts_primary": false,
+      "changes_contribution": false,
+      "changes_center_conclusion": false
+    },
+    "rival_supported": {
+      "conclusion_effect": "The continuity claim is retracted and only shared-resource use is reported.",
+      "retracts_primary": true,
+      "changes_contribution": true,
+      "changes_center_conclusion": true
+    },
+    "template_supported": {
+      "conclusion_effect": "The overlap is reported as a typological artifact only.",
+      "retracts_primary": true,
+      "changes_contribution": true,
+      "changes_center_conclusion": true
+    },
+    "inconclusive": {
+      "conclusion_effect": "Only the typological correspondence is kept, with no continuity claim.",
+      "retracts_primary": true,
+      "changes_contribution": true,
+      "changes_center_conclusion": true
+    }
+  },
+  "contribution_type": {
+    "primary": "dispute_adjudication",
+    "secondary": [
+      "conceptual_reconstruction",
+      "methodological_framework"
+    ]
+  },
+  "bridge_assessments": [
+    {
+      "bridge_id": "B3",
+      "overall_strength": "medium",
+      "dimensions": {
+        "typological_correspondence": "high",
+        "authorial_reactivation": "unresolved",
+        "shared_source": "medium",
+        "genealogical_continuity": "unproven",
+        "mechanism_continuity": "unproven"
+      }
+    }
+  ],
+  "adversarial_review": {
+    "status": "pending",
+    "path": null,
+    "completed_at": null
+  },
+  "validation_status": {
+    "required": true,
+    "completed": false,
+    "completed_at": null
+  },
+  "design_history": []
+}

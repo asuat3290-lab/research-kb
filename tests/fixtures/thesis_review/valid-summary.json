@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "kind": "review_summary",
+  "paper_id": "fixture-paper",
+  "paper_version": "v1.0",
+  "stage": "revision_plan",
+  "generated_at": "2026-08-07",
+  "findings": [
+    {"id": "C01", "severity": "critical", "category": "argument", "location": "ch3", "problem": "claim unsupported", "impact_on_conclusion": true, "related_claims": ["THESIS"]}
+  ]
+}

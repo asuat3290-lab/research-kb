@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.1",
+  "design_version": 1,
+  "design_sha256": "99b78ca00660aee4c10db97f33d343f98a233442ec0ccfbbda48245eea19e0b1",
+  "hypothesis_statuses": [
+    {
+      "hypothesis_id": "H1",
+      "status": "not_falsified"
+    },
+    {
+      "hypothesis_id": "H2",
+      "status": "unresolved"
+    },
+    {
+      "hypothesis_id": "H3",
+      "status": "unresolved"
+    }
+  ],
+  "positive_discriminating_evidence": [],
+  "observations": [
+    {
+      "id": "O1",
+      "evidence_class": "source_texts",
+      "outcome": "later_text_reuses_vocabulary",
+      "known_before_lock": false,
+      "observed_at": "2026-08-07T11:00:00+08:00",
+      "observation_scope": "locked-section-by-section review",
+      "matches_prediction": true
+    }
+  ]
+}

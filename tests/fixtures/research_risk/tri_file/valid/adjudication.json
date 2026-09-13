@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.1",
+  "design_version": 1,
+  "design_sha256": "99b78ca00660aee4c10db97f33d343f98a233442ec0ccfbbda48245eea19e0b1",
+  "adjudication_version": 1,
+  "verdicts": [
+    {
+      "hypothesis_id": "H1",
+      "status": "not_falsified",
+      "reasoning": "No positive discriminating evidence yet; the design remains open."
+    },
+    {
+      "hypothesis_id": "H2",
+      "status": "unresolved",
+      "reasoning": "No post-lock discriminating evidence yet."
+    },
+    {
+      "hypothesis_id": "H3",
+      "status": "unresolved",
+      "reasoning": "Template breadth has not been tested with post-lock controls."
+    }
+  ]
+}

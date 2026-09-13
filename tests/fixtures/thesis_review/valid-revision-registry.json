@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "kind": "revision_registry",
+  "paper_id": "fixture-paper",
+  "paper_version": "v1.0",
+  "items": [
+    {
+      "id": "R001",
+      "severity": "major",
+      "location": "ch2 s3",
+      "problem_type": "argument_gap",
+      "problem_description": "missing step",
+      "evidence": "textual evidence",
+      "recommended_change": "add step",
+      "allowed_scope": "ch2 s3 paras 4-6",
+      "must_preserve": "chapter claim",
+      "forbidden_changes": "no new theory",
+      "dependencies": [],
+      "related_claims": ["THESIS"],
+      "human_status": "proposed"
+    }
+  ]
+}

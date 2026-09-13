@@ -1,0 +1,59 @@
+{
+  "private_terms": [
+    "private", "personal", "unpublished", "draft", "homework", "assignment", "resume", "cv",
+    "\u4e2a\u4eba", "\u79c1\u4eba", "\u672a\u53d1\u8868", "\u8349\u7a3f", "\u4f5c\u4e1a", "\u7b80\u5386", "\u9519\u9898", "\u8003\u516c", "\u65e5\u5fd7"
+  ],
+  "discovery_terms": [
+    "\u672c\u79d1\u9636\u6bb5", "\u7814\u7a76\u751f\u9636\u6bb5", "\u5b66\u4e60\u6863\u6848", "\u8bfe\u7a0b\u8d44\u6599", "\u8bb2\u5ea7\u4e0e\u7b14\u8bb0"
+  ],
+  "cache_terms": [
+    "cache", "temp", "tmp", "part", "crdownload", "download", "downloads", "node_modules", "__pycache__", ".git", "logs", "log", "\u7f13\u5b58", "\u6d4f\u89c8\u5668", "recycle", "thumbs"
+  ],
+  "repository_markers": [
+    ".git", "node_modules", ".mimocode", "copilot-custom-prompts"
+  ],
+  "repository_path_terms": [
+    "build", "dist", "logs", "generated", "output", "packages", "src"
+  ],
+  "ocr_path_terms": [
+    "ocr_output", "ocr-output", "ocr"
+  ],
+  "generated_path_terms": [
+    "build", "dist", "generated", "output", "ocr_output", "ocr-output"
+  ],
+  "generated_filename_patterns": [
+    "^page[_-]?\\d{3,6}\\.txt$",
+    "^p[_-]?\\d{3,6}\\.txt$",
+    "(?:^|[_-])ocr(?:[_-]|$)",
+    "(?:^|[_-])generated(?:[_-]|$)",
+    "(?:^|[_-])output(?:[_-]|$)"
+  ],
+  "readme_pattern": "^readme(?:[._-].*)?\\.(?:md|markdown|txt|html?)$",
+  "source_extensions": [
+    ".py", ".js", ".ts", ".tsx", ".jsx", ".java", ".c", ".cpp", ".h", ".hpp", ".go", ".rs", ".css", ".scss", ".json", ".yaml", ".yml", ".toml", ".sh", ".bat", ".cmd", ".ps1", ".ipynb"
+  ],
+  "ready": {
+    "require_complete_sha256": true,
+    "require_title": true,
+    "require_source_type": true,
+    "require_bibliographic_provenance": true,
+    "require_pdf_text_probe": true,
+    "exclude_possible_duplicate": true,
+    "exclude_privacy_review": true,
+    "exclude_code_repository": true,
+    "exclude_generated_derivative": true
+  },
+  "forecast": {
+    "first_batch_sample_size": 64,
+    "full_corpus_sample_size": 96,
+    "pdf_max_probe_bytes": 67108864,
+    "pdf_probe_timeout_seconds": 30,
+    "pdf_page_sample_count": 3,
+    "unknown_ocr_bytes_per_page_low": 100000,
+    "unknown_ocr_bytes_per_page_expected": 250000,
+    "unknown_ocr_bytes_per_page_high": 500000,
+    "unknown_ocr_chars_per_page_low": 1000,
+    "unknown_ocr_chars_per_page_expected": 2500,
+    "unknown_ocr_chars_per_page_high": 5000
+  }
+}

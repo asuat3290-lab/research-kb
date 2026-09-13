@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.1",
+  "enabled": true,
+  "policy_level": "interpretive",
+  "design_version": 2,
+  "design_status": "locked",
+  "research_question": "Does the locked design document its changes?",
+  "primary_hypothesis": {
+    "id": "H1",
+    "statement": "The observed structural overlap reflects internal continuity in the author's problem development.",
+    "risk_bearing": true,
+    "failure_effect": "The continuity claim in the center conclusion must be retracted.",
+    "predictions": [
+      {
+        "evidence_class": "source_texts",
+        "expected_observation": "The later text explicitly reuses the earlier problem vocabulary with the same function."
+      }
+    ]
+  },
+  "rival_hypotheses": [
+    {
+      "id": "H2",
+      "statement": "The overlap reflects independent use of shared common resources.",
+      "hypothesis_kind": "shared_source",
+      "simplicity_note": "Simpler when no direct authorial link is documented.",
+      "predictions": [
+        {
+          "evidence_class": "source_texts",
+          "expected_observation": "The same vocabulary appears in contemporaneous authors with no documented link."
+        }
+      ]
+    }
+  ],
+  "falsification_conditions": [
+    {
+      "id": "F1",
+      "statement": "If all discriminating predictions fail, H1 is not supported.",
+      "related_hypothesis_id": "H1",
+      "status_at_lock": "genuinely_open"
+    }
+  ],
+  "operational_criteria": [
+    {
+      "id": "C1",
+      "statement": "Structural correspondence is established by shared vocabulary and function.",
+      "inclusion_test": "Both texts contain the same term with a comparable role.",
+      "exclusion_test": "Shared vocabulary without comparable role is not counted."
+    }
+  ],
+  "diachronic_connection_evidence": [],
+  "mechanism_chain": [],
+  "mechanism_failure_conditions": [],
+  "materials": [],
+  "holdout_sources": [],
+  "negative_controls": [],
+  "outcome_branches": {
+    "primary_supported": {
+      "conclusion_effect": "The continuity claim is kept.",
+      "retracts_primary": false,
+      "changes_contribution": false,
+      "changes_center_conclusion": false
+    },
+    "rival_supported": {
+      "conclusion_effect": "The continuity claim is retracted and only shared-resource use is reported.",
+      "retracts_primary": true,
+      "changes_contribution": true,
+      "changes_center_conclusion": true
+    }
+  },
+  "contribution_type": {
+    "primary": "dispute_adjudication",
+    "secondary": [
+      "conceptual_reconstruction"
+    ]
+  },
+  "bridge_assessments": [],
+  "adversarial_review": {
+    "status": "pending",
+    "path": null,
+    "completed_at": null
+  },
+  "validation_status": {
+    "required": false,
+    "completed": false,
+    "completed_at": null
+  },
+  "design_history": [],
+  "locked_at": "2026-08-07T00:00:00+08:00"
+}

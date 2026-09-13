@@ -1,0 +1,23 @@
+{
+  "schema_version": "1",
+  "kind": "revision_registry",
+  "paper_id": "PAPER_ID",
+  "paper_version": "vN.M",
+  "items": [
+    {
+      "id": "R001",
+      "severity": "major",
+      "location": "第二章第三节第4-6段",
+      "problem_type": "argument_gap",
+      "problem_description": "问题描述",
+      "evidence": "证据/依据",
+      "recommended_change": "建议修改",
+      "allowed_scope": "允许修改范围",
+      "must_preserve": "必须保留",
+      "forbidden_changes": "禁止改动",
+      "dependencies": [],
+      "related_claims": ["CLAIM_ID"],
+      "human_status": "proposed"
+    }
+  ]
+}

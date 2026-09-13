@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://research-kb.local/schemas/thesis_review.schema.json",
+  "title": "thesis_review",
+  "description": "Machine-readable review artifacts for the thesis_review workflow (review summary, argument map, revision registry).",
+  "type": "object",
+  "properties": {
+    "schema_version": { "const": "1" }
+  },
+  "required": ["schema_version"],
+  "$defs": {
+    "review_summary": {
+      "title": "ReviewSummary",
+      "description": "00-review-summary.json; human-readable rendering lives in 00-review-summary.md.",
+      "type": "object",
+      "properties": {
+        "schema_version": { "const": "1" },
+        "kind": { "const": "review_summary" },
+        "paper_id": { "type": "string", "minLength": 1 },
+        "paper_version": { "type": "string", "minLength": 1 },
+        "stage": { "enum": ["ingest", "argument_map", "evidence_audit", "semantic_review", "adversarial_review", "revision_plan", "controlled_revision", "post_revision_audit"] },
+        "generated_at": { "type": "string" },
+        "findings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/finding" }
+        }
+      },
+      "required": ["schema_version", "kind", "paper_id", "paper_version", "stage", "findings"]
+    },
+    "finding": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["critical", "major", "moderate", "minor"] },
+        "category": { "enum": ["argument", "evidence", "concept", "cross_chapter", "adversarial", "other"] },
+        "location": { "type": "string", "minLength": 1 },
+        "problem": { "type": "string", "minLength": 1 },
+        "impact_on_conclusion": { "type": "boolean" },
+        "related_claims": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["id", "severity", "location", "problem"]
+    },
+    "argument_map": {
+      "title": "ArgumentMap",
+      "description": "01-argument-map.json; human-readable rendering lives in 01-argument-map.md.",
+      "type": "object",
+      "properties": {
+        "schema_version": { "const": "1" },
+        "kind": { "const": "argument_map" },
+        "paper_id": { "type": "string", "minLength": 1 },
+        "paper_version": { "type": "string", "minLength": 1 },
+        "nodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/argument_node" }
+        }
+      },
+      "required": ["schema_version", "kind", "paper_id", "paper_version", "nodes"]
+    },
+    "argument_node": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["thesis", "chapter_claim", "key_definition", "intermediate_inference", "rival_response", "dependency"] },
+        "text": { "type": "string", "minLength": 1 },
+        "location": { "type": "string" },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "supports": { "type": "array", "items": { "type": "string" } },
+        "evidence_refs": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["id", "kind", "text"]
+    },
+    "revision_registry": {
+      "title": "RevisionRegistry",
+      "description": "08-revision-items.json; one item per proposed/approved/rejected/completed revision task.",
+      "type": "object",
+      "properties": {
+        "schema_version": { "const": "1" },
+        "kind": { "const": "revision_registry" },
+        "paper_id": { "type": "string", "minLength": 1 },
+        "paper_version": { "type": "string", "minLength": 1 },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/revision_item" }
+        }
+      },
+      "required": ["schema_version", "kind", "paper_id", "paper_version", "items"]
+    },
+    "revision_item": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["critical", "major", "moderate", "minor"] },
+        "location": { "type": "string", "minLength": 1 },
+        "problem_type": { "enum": ["argument_gap", "circular_argument", "unsupported_premise", "overclaim", "evidence_mismatch", "quote_function_abuse", "concept_drift", "cross_chapter_conflict", "rival_unaddressed", "literature_gap", "other"] },
+        "problem_description": { "type": "string", "minLength": 1 },
+        "evidence": { "type": "string", "minLength": 1 },
+        "recommended_change": { "type": "string", "minLength": 1 },
+        "allowed_scope": { "type": "string", "minLength": 1 },
+        "must_preserve": { "type": "string" },
+        "forbidden_changes": { "type": "string" },
+        "dependencies": { "type": "array", "items": { "type": "string" } },
+        "related_claims": { "type": "array", "items": { "type": "string" } },
+        "human_status": { "enum": ["proposed", "approved", "rejected", "completed"] }
+      },
+      "required": ["id", "severity", "location", "problem_type", "problem_description", "evidence", "recommended_change", "allowed_scope", "human_status"]
+    }
+  }
+}

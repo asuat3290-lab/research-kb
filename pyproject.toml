@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "research-kb"
+version = "0.1.1.dev23"
+description = "A lightweight, agent-facing local research knowledge base"
+requires-python = ">=3.11"
+dependencies = [
+    "annotated-types==0.8.0",
+    "anyio==4.14.2",
+    "attrs==26.1.0",
+    "certifi==2026.7.22",
+    "cffi==2.1.0",
+    "click==8.4.2",
+    "colorama==0.4.6",
+    "cryptography==50.0.0",
+    "h11==0.16.0",
+    "httpcore==1.0.9",
+    "httpx==0.28.1",
+    "httpx-sse==0.4.3",
+    "idna==3.18",
+    "jsonschema==4.26.0",
+    "jsonschema-specifications==2025.9.1",
+    "mcp==1.29.0",
+    "pycparser==3.0",
+    "pydantic==2.13.4",
+    "pydantic-core==2.46.4",
+    "pydantic-settings==2.14.2",
+    "PyJWT==2.13.0",
+    "pymupdf==1.28.2",
+    "pypdf==6.14.2",
+    "python-dotenv==1.2.2",
+    "python-multipart==0.0.32",
+    "pywin32==312",
+    "referencing==0.37.0",
+    "rpds-py==2026.6.3",
+    "sse-starlette==3.4.6",
+    "starlette==1.3.1",
+    "typing-extensions==4.16.0",
+    "typing-inspection==0.4.2",
+    "uvicorn==0.52.0",
+]
+
+[project.optional-dependencies]
+mcp = ["mcp==1.29.0"]
+pdf = ["pypdf==6.14.2"]
+
+[project.scripts]
+research-kb = "research_kb.cli:main"
+research-kb-mcp = "research_kb.mcp_server:main"
+research-kb-max-mcp = "research_kb.max_research.external_agent_mcp_server:main"
+research-kb-acquisition = "research_kb.acquisition:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+research_kb = [
+    "migrations/*.sql",
+    "max_research/migrations/*.sql",
+    "max_research/*.json",
+    "catalog_policy.json",
+    "research_risk.schema.json",
+    "thesis_review.schema.json",
+    "writing_policy.json",
+    "writing_policy.schema.json",
+    "templates/thesis-review/*.md",
+    "templates/thesis-review/*.json",
+]
+
+[tool.setuptools.data-files]
+"share/research-kb/docs" = ["docs/system-manifest.example.toml", "docs/system-governance.md", "docs/checkpoint-lifecycle.md", "docs/skill-authority-and-adapters.md", "docs/max-research-v1.md", "docs/max-research-state.md", "docs/max-deliberation-protocol.md", "docs/max-research-benchmark.md", "docs/max-research-persistence.md", "docs/max-research-control-plane.md", "docs/max-research-runner.md", "docs/max-research-provider.md", "docs/max-research-scheduler.md", "docs/max-research-live-provider.md", "docs/max-research-mr2b2.md", "docs/max-research-mr3.md", "docs/max-research-mr4a.md", "docs/max-research-live-canary-plan.md", "docs/max-research-mr4b1c.md", "docs/max-research-mr-convergence-dev18.md", "docs/max-research-mr-convergence-dev19.md", "docs/max-research-mr-credential-closure-dev20.md", "docs/max-research-portability.md", "docs/max-research-external-agent.md"]
+"share/research-kb/skills/source-based-research" = ["skills/source-based-research/SKILL.md"]
+"share/research-kb/skills/max-research-portability" = ["skills/max-research-portability/SKILL.md"]
+"share/research-kb/adapters/codex" = ["adapters/codex/source-based-research.md"]
+"share/research-kb/adapters/luna" = ["adapters/luna/source-based-research.md"]
+"share/research-kb/adapters/qoder" = ["adapters/qoder/source-based-research.md"]
+"share/research-kb/adapters/opencode" = ["adapters/opencode/source-based-research.md"]
+"share/research-kb/adapters/codex-portability" = ["adapters/codex/max-research-portability.md"]
+"share/research-kb/adapters/luna-portability" = ["adapters/luna/max-research-portability.md"]
+"share/research-kb/adapters/qoder-portability" = ["adapters/qoder/max-research-portability.md"]
+"share/research-kb/adapters/hermes-portability" = ["adapters/hermes/max-research-portability.md"]

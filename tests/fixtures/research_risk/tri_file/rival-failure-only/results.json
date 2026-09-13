@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.1",
+  "design_version": 1,
+  "design_sha256": "49174d74cc4ad10302fa7cc1c7ea8a237bb1946c7019e4acc48dd51f2ff6ac29",
+  "hypothesis_statuses": [
+    {
+      "hypothesis_id": "H1",
+      "status": "supported"
+    },
+    {
+      "hypothesis_id": "H2",
+      "status": "falsified"
+    },
+    {
+      "hypothesis_id": "H3",
+      "status": "falsified"
+    }
+  ],
+  "positive_discriminating_evidence": [],
+  "observations": []
+}

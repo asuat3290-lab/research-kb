@@ -1,0 +1,85 @@
+{
+  "profile": "legacy_v62",
+  "legacy_audit": "audit_lite",
+  "legacy_version": "v6.2",
+  "files": {
+    "claims": 30,
+    "links": 102,
+    "events": 29,
+    "events_current": "events-0002-v62-migration.jsonl"
+  },
+  "summary": {
+    "errors": 0,
+    "warnings": 7,
+    "review_items": 6,
+    "approval_blockers": 3
+  },
+  "errors": [],
+  "warnings": [
+    {
+      "rule_id": "coarse_mapping",
+      "object": "link-map-v6.2-ch1-claim-i1"
+    },
+    {
+      "rule_id": "coarse_mapping",
+      "object": "link-map-v6.2-ch2-claim-i2"
+    },
+    {
+      "rule_id": "coarse_mapping",
+      "object": "link-map-v6.2-ch3-claim-i3"
+    },
+    {
+      "rule_id": "coarse_mapping",
+      "object": "link-map-v6.2-ch4-claim-i4"
+    },
+    {
+      "rule_id": "coarse_mapping",
+      "object": "link-map-v6.2-ch5-claim-i5"
+    },
+    {
+      "rule_id": "coarse_mapping",
+      "object": "link-map-v6.2-adorno-claim-i6"
+    },
+    {
+      "rule_id": "coarse_mapping",
+      "object": "link-map-v6.2-ch6-claim-i5"
+    }
+  ],
+  "review_items": [
+    {
+      "rule_id": "weak_bridge",
+      "object": "link-bridge-B2-ethical-political"
+    },
+    {
+      "rule_id": "retained_stale_link",
+      "object": "link-depends-claim-p6-claim-p2"
+    },
+    {
+      "rule_id": "retained_stale_link",
+      "object": "link-depends-claim-p10-claim-p4"
+    },
+    {
+      "rule_id": "retained_stale_link",
+      "object": "link-depends-claim-i4-claim-p6"
+    },
+    {
+      "rule_id": "research_history"
+    },
+    {
+      "rule_id": "second_nature_bridge"
+    }
+  ],
+  "approval_blockers": [
+    {
+      "rule_id": "center_thesis_pending",
+      "object": "claim-main-thesis@2",
+      "human_status": "pending"
+    },
+    {
+      "rule_id": "pending_page"
+    },
+    {
+      "rule_id": "final_approval_pending"
+    }
+  ]
+}
