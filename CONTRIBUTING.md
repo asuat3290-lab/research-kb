@@ -1,7 +1,8 @@
 # Contributing
 
-This is a development snapshot shared in a private repository. No open-source
-license has been declared. Discuss redistribution or licensing with the owner.
+This is an open-source development snapshot under the [MIT License](LICENSE).
+Contributions are welcome under the same license. Submit only material you have
+the right to contribute; preserve third-party notices and attribution.
 
 ## Useful first contributions
 
